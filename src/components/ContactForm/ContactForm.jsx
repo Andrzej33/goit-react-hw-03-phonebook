@@ -1,6 +1,7 @@
 // import { Component } from 'react';
 import { Formik,Field } from 'formik';
-import { FormOfContacts } from './Form.styled';
+import { Form } from './Form.styled';
+import * as Yup from 'yup';
 // import { nanoid } from 'nanoid';
 // import PropTypes from 'prop-types';
 
@@ -8,11 +9,21 @@ import { FormOfContacts } from './Form.styled';
 // nameId = nanoid();
 // numberId = nanoid();
 
+const validationSchema= Yup.object().shape({
+         firstName: Yup.string()
+           .max(15, 'Must be 15 characters or less')
+           .required('Required'),
+         lastName: Yup.string()
+           .max(20, 'Must be 20 characters or less')
+           .required('Required'),
+         email: Yup.string().email('Invalid email address').required('Required'),
+       })
 
-const initialValues ={
-  name:'',
-  number:'',
-}
+       const contactsShema= Yup.object().shape({
+        name:Yup.string().required,
+         number:Yup.number().required,
+       })
+
 
 export const ContactForm = () => {
  
@@ -47,16 +58,20 @@ export const ContactForm = () => {
   // render() {
 
  const handleSubmit=(values,{resetForm}) =>{
-resetForm()
+  console.log(values);
+// resetForm()
  }
 
 
     return (
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      <FormOfContacts onSubmit={this.handleSubmit}>
+      <Formik initialValues={{
+   name:'',
+  number:'',
+ }
+} onSubmit={handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <label htmlFor={this.nameId}>Name </label>
         <Field
-          type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
@@ -79,7 +94,7 @@ resetForm()
         />
 
         <button type="submit">Add contact</button>
-      </FormOfContacts>
+      </Form>
       </Formik>
     );
   }
