@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Form } from 'formik';
 
-export const FormOfContacts = styled.form`
+export const FormOfContacts = styled(Form)`
   display: flex;
   flex-direction: column;
   max-width: 500px;
