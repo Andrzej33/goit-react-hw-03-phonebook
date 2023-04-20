@@ -66,7 +66,7 @@ export class App extends Component {
     const { filter } = this.state;
     return (
       <Layout>
-        <ContactForm onSubmit={this.addContact} />
+        <ContactForm onAdd={this.addContact} />
         <Title>Contacts</Title>
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
