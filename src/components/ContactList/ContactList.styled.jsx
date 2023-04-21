@@ -27,6 +27,7 @@ export const ListOfContacts = styled.ul`
       background: linear-gradient(90deg, #0000 33%, #fff5, #0000 67%)
           var(--_p, 100%) / 300% no-repeat,
         #e97f02;
+        cursor: pointer;
       color: #0000;
       border: none;
       transform: perspective(500px) rotateY(calc(20deg * var(--_i, -1)));

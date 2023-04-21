@@ -2,32 +2,29 @@
 import { Formik,Field, } from 'formik';
 import { Form,ErrorMessage } from './Form.styled';
 import * as Yup from 'yup';
-// import { nanoid } from 'nanoid';
-// import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 
 
-
-// const validationSchema= Yup.object().shape({
-//          firstName: Yup.string()
-//            .max(15, 'Must be 15 characters or less')
-//            .required('Required'),
-//          lastName: Yup.string()
-//            .max(20, 'Must be 20 characters or less')
-//            .required('Required'),
-//          email: Yup.string().email('Invalid email address').required('Required'),
-//        })
+// const  phoneRegEx = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
        const ContactsSchema= Yup.object().shape({
         name:Yup.string().required('Required field'),
-         number:Yup.number().min(6,'this number must be longer then 3 symbols').required('Required field'),
+       number: Yup.number()
+      //  .max(12,'this number must be less longer then 12 symbols')
+       .typeError("That doesn't look like a phone number")
+       .positive("A phone number can't start with a minus")
+       .integer("A phone number can't include a decimal point")
+       .required('Required field'),
        })
 
+      
 
 export const ContactForm = ({onAdd}) => {
  
-// const nameId = nanoid();
-// const numberId = nanoid();
+const nameId = nanoid();
+const numberId = nanoid();
   // state = {
   //   name: '',
   //   number: '',
@@ -77,30 +74,26 @@ const handleSubmit =(values,actions) =>{
  onSubmit={handleSubmit}>
       <Form>
         <label
-        // htmlFor={nameId}
+        htmlFor={nameId}
         >Name </label>
         <Field
           name="name"
-          // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
+
           // value={this.state.name}
           // onChange={this.handleChange}
-          // id={nameId}
+          id={nameId}
         />
 <ErrorMessage name='name' component='span'/>
         <label 
-        // htmlFor={numberId}
+        htmlFor={numberId}
         >Number</label>
         <Field
           type="tel"
           name="number"
-          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          // required
+          
           // value={this.state.number}
           // onChange={this.handleChange}
-          // id={numberId}
+          id={numberId}
         />
 <ErrorMessage name='number' component='span'/>
         <button type="submit">Add contact</button>
@@ -110,6 +103,8 @@ const handleSubmit =(values,actions) =>{
   }
 // }
 
-// ContactForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-// };
+ContactForm.propTypes = {
+  onAdd: PropTypes.func.isRequired,
+  // nameId:PropTypes.string.isRequired,
+  // numberId:PropTypes.string.isRequired,
+};

@@ -8,10 +8,12 @@ export const Form = styled(FormOfContacts)`
   margin: 0 auto;
 
   label {
+    padding-left: 20px;
+margin-bottom: 10px;
     display: block;
     font-size: 18px;
     color: #666;
-    padding-bottom: 15px;
+   
     cursor: pointer;
   }
 
@@ -25,7 +27,7 @@ export const Form = styled(FormOfContacts)`
     box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
     border: 1px solid #999;
     outline: none;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 
     &:focus {
       border-color: #ff6f00;
@@ -57,7 +59,9 @@ export const Form = styled(FormOfContacts)`
 
 
 export const ErrorMessage = styled(FormikError)`
+margin-bottom: 20px;
   font-size: 14px;
-  color: #9b1673;
+  padding-left: 20px;
+  color:red;
   /* color: {p => p.theme.color.accent} */
 `
