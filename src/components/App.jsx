@@ -28,7 +28,14 @@ export class App extends Component {
       alert(`${name} is already in contacts`);
       return;
     }
-
+    if (
+      this.state.contacts.find(
+        contact => contact.number === number
+      )
+    ) {
+      alert(`${number} is already exist in contacts`);
+      return;
+    }
     {
       const contact = {
         id: nanoid(),
@@ -59,6 +66,26 @@ export class App extends Component {
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
+
+  componentDidMount(){
+    const contacts = localStorage.getItem('contacts');
+    
+    const parsedContacts = JSON.parse(contacts);
+    if(parsedContacts) {
+      this.setState({contacts:parsedContacts}) 
+    }
+   
+  }
+
+  componentDidUpdate(prevProps,prevState,){
+    // console.log(prevState,prevProps);
+    if(this.state.contacts!==prevState.contacts)
+       {
+      // console.log(this.state.contacts);
+      // console.log(prevState.contacts);
+      localStorage.setItem('contacts',JSON.stringify(this.state.contacts))
+    }
+  }
 
   render() {
     const filteredContacts = this.getFilteredContacts();

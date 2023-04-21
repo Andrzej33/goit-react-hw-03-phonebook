@@ -2,7 +2,7 @@
 import { Formik,Field, } from 'formik';
 import { Form,ErrorMessage } from './Form.styled';
 import * as Yup from 'yup';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 
 
@@ -23,18 +23,11 @@ import PropTypes from 'prop-types';
 
 export const ContactForm = ({onAdd}) => {
  
-const nameId = nanoid();
-const numberId = nanoid();
-  // state = {
-  //   name: '',
-  //   number: '',
-  // };
+// const nameId = nanoid();
+// const numberId = nanoid();
+ 
 
-  // handleSubmit = e => {
-  //   e.preventDefault();
-  //   this.props.onSubmit(this.state);
-  //   this.reset();
-  // };
+  
 
   // handleChange = e => {
   //   const { name, value } = e.currentTarget;
@@ -43,16 +36,7 @@ const numberId = nanoid();
   //   });
   // };
 
-  // reset = () => {
-  //   this.setState({
-  //     name: '',
-  //     number: '',
-  //   });
-  // };
-
-  
-
-  // render() {
+ 
 
 //  const handleSubmit=(values,{resetForm}) =>{
 //   console.log(values);
@@ -74,26 +58,22 @@ const handleSubmit =(values,actions) =>{
  onSubmit={handleSubmit}>
       <Form>
         <label
-        htmlFor={nameId}
+        // htmlFor={nameId}
         >Name </label>
         <Field
           name="name"
-
-          // value={this.state.name}
           // onChange={this.handleChange}
-          id={nameId}
+          // id={nameId}
         />
 <ErrorMessage name='name' component='span'/>
         <label 
-        htmlFor={numberId}
+        // htmlFor={numberId}
         >Number</label>
         <Field
           type="tel"
           name="number"
-          
-          // value={this.state.number}
           // onChange={this.handleChange}
-          id={numberId}
+          // id={numberId}
         />
 <ErrorMessage name='number' component='span'/>
         <button type="submit">Add contact</button>
