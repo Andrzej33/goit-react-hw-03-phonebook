@@ -47,6 +47,7 @@ margin-bottom: 10px;
     letter-spacing: 1px;
     display: inline-block;
     cursor: pointer;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover,
     &:focus {
